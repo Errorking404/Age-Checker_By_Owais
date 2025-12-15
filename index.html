@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>romanagecalclt</title>
+  <style></style>
+</head>
+<body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JuNaid HACKER ☠️✔️🎭</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:linear-gradient(135deg,#ffffff,#f0f0f0);
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.card{
+  background:#fff;
+  width:95%;
+  max-width:460px;
+  padding:25px;
+  border-radius:18px;
+  box-shadow:0 20px 45px rgba(0,0,0,0.15);
+}
+
+h1{
+  text-align:center;
+  font-size:22px;
+  margin-bottom:20px;
+}
+
+label{
+  font-size:14px;
+  margin-top:12px;
+  display:block;
+}
+
+input{
+  width:100%;
+  padding:12px;
+  margin-top:5px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  font-size:15px;
+}
+
+button{
+  width:100%;
+  margin-top:18px;
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  background:#000;
+  color:#fff;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.result{
+  margin-top:20px;
+  padding:15px;
+  border-radius:12px;
+  background:#f7f7f7;
+  display:none;
+}
+
+.result p{
+  margin:6px 0;
+  font-size:14.5px;
+}
+
+.progress-box{
+  margin-top:15px;
+}
+
+.progress-bar{
+  width:100%;
+  height:12px;
+  background:#ddd;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.progress-fill{
+  height:100%;
+  width:0%;
+  background:#000;
+}
+
+.footer{
+  text-align:center;
+  margin-top:18px;
+  font-size:13px;
+  color:#555;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1>Tricker Owais Qarni ☠️✔️🎭</h1>
+
+  <label>Date of Birth</label>
+  <input type="date" id="dob">
+
+  <label>Today Date</label>
+  <input type="date" id="today">
+
+  <button onclick="calculateAge()">Calculate Age</button>
+
+  <div class="result" id="result">
+    <p id="ageText"></p>
+    <p id="totalDays"></p>
+    <p id="nextBirthday"></p>
+    <p id="liveSeconds"></p>
+
+    <div class="progress-box">
+      <p>Year Progress</p>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">powered by: Tricker Owais Qarni</div>
+</div>
+
+<script>
+let liveInterval;
+
+function calculateAge(){
+  clearInterval(liveInterval);
+
+  const dobVal = document.getElementById("dob").value;
+  const todayVal = document.getElementById("today").value;
+
+  if(!dobVal || !todayVal){
+    alert("Please select both dates");
+    return;
+  }
+
+  const dob = new Date(dobVal);
+  const today = new Date(todayVal);
+
+  if(today < dob){
+    alert("Today date must be after DOB");
+    return;
+  }
+
+  let years = today.getFullYear() - dob.getFullYear();
+  let months = today.getMonth() - dob.getMonth();
+  let days = today.getDate() - dob.getDate();
+
+  if(days < 0){
+    months--;
+    const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+    days += prevMonth.getDate();
+  }
+  if(months < 0){
+    years--;
+    months += 12;
+  }
+
+  const diffMs = today - dob;
+  const totalDays = Math.floor(diffMs / (1000*60*60*24));
+
+  document.getElementById("ageText").innerText =
+    `Age: ${years} Years, ${months} Months, ${days} Days`;
+
+  document.getElementById("totalDays").innerText =
+    `Total Days Lived: ${totalDays}`;
+
+  // Next Birthday
+  let nextBirthday = new Date(today.getFullYear(), dob.getMonth(), dob.getDate());
+  if(nextBirthday < today){
+    nextBirthday.setFullYear(today.getFullYear()+1);
+  }
+  const daysLeft = Math.ceil((nextBirthday - today)/(1000*60*60*24));
+  document.getElementById("nextBirthday").innerText =
+    `Next Birthday In: ${daysLeft} Days`;
+
+  // Progress Bar
+  const yearStart = new Date(today.getFullYear(), dob.getMonth(), dob.getDate());
+  const yearEnd = new Date(yearStart.getFullYear()+1, dob.getMonth(), dob.getDate());
+  const progress = ((today - yearStart) / (yearEnd - yearStart)) * 100;
+  document.getElementById("progressFill").style.width =
+    Math.max(0,Math.min(progress,100)) + "%";
+
+  // Live Seconds
+  function updateSeconds(){
+    const now = new Date();
+    const seconds = Math.floor((now - dob)/1000);
+    document.getElementById("liveSeconds").innerText =
+      `Live Age Seconds: ${seconds.toLocaleString()}`;
+  }
+  updateSeconds();
+  liveInterval = setInterval(updateSeconds,1000);
+
+  document.getElementById("result").style.display="block";
+}
+</script>
+
+</body>
+    </html>
+  
